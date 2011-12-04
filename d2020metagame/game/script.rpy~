@@ -1,0 +1,84 @@
+﻿# You can place the script of your game in this file.
+
+# Declare images below this line, using the image statement.
+image eileen happy = "eileen_happy.png"
+
+# Declare characters used by this game.
+define p = Character('Primer', color="#c8ffc8")
+define y = Character("You")
+
+image bg office = "office.png"
+image bg computer = "computer.png"
+
+# The game starts here.
+label start:
+    scene bg office
+    p "You are in an office. There is a computer."
+
+    
+    y "Who am I?"
+
+    menu:
+        "Pick up the computer.":
+            jump pickUpTheComputer
+            
+        "Jump out the window.":
+            jump jumpOutTheWindow
+    return
+    
+label jumpOutTheWindow:
+    p "You jump out the window. You see a sign:"
+    p "THINK YOU'RE PRETTY CLEVER?"
+    jump start
+
+label pickUpTheComputer:
+    scene bg computer
+    p "You pick up the computer."
+    p "Type the following EXACTLY:"
+    p "print(\"Hello World\");"
+    jump naming
+    
+label naming:
+        p "What's your name?"
+        menu:
+            "Nell":
+                jump Nell
+                
+            "Bob":
+                jump Harv
+        return
+       
+label Nell:
+    "You are Princess Nell?"
+    $ name = "Nell"
+    $ gender = "F"
+    jump NellOpening
+
+label Bob:
+    "Oh, I thought might be someone else... You must be Prince Harv!"
+    $ name = "Harv"
+    $ gender = "M"
+    jump HarvOpening
+    
+label afterName:
+    # return a random float between 0 and 1
+    $ randomOpenerNumber = renpy.random.random()
+
+    if randomOpenerNumber > 0.5:
+        p "Do you like waffles?"
+        jump closer
+    else:
+        p "I HATE WAFFLES!"
+        jump closer
+        
+label closer:
+    # return a random float between 0 and 1
+    $ randomOpenerNumber = renpy.random.random()
+    if randomOpenerNumber > 0.5:
+        p "Do you like pizza?"
+        jump afterName
+    else:
+        p "I HATE sour cream!"
+        jump afterName
+    
+

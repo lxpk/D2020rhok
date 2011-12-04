@@ -1,0 +1,11 @@
+build_windows = True
+description = 'A template that can be used to make your own game. Not a very interesting game on its own.'
+build_mac = True
+build_all = True
+documentation_extensions = 'txt html'
+distribution_base = 'd2020metagame'
+ignore_extensions = '~ .bak'
+template = True
+ro = True
+build_linux = True
+executable_name = 'd2020metagame'
